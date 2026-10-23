@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kognit — Web App
 
-## Getting Started
+Frontend for **Kognit**, a task-collaboration workspace built for product managers and engineers — spaces for organising work, tasks with acceptance criteria and priorities, and drag-and-drop boards for moving work from backlog to done.
 
-First, run the development server:
+**API:** [kognit-backend](https://github.com/muhammadatiq1/kognit-backend) (Express 5 · Prisma · MySQL · JWT)
+
+## Features
+
+- **Structured workspaces** — work organised into spaces (public or private) with task boards
+- **Drag-and-drop boards** — move tasks between `BACKLOG`, `IN_PROGRESS`, `REVIEW` and `COMPLETED` with dnd-kit
+- **PM-grade task details** — acceptance criteria, priority levels, assignees, due dates, tags and comments
+- **Role-aware experience** — interfaces shaped for both PM and Engineer roles
+- **Auth & public areas** — separated route groups for the app, authentication flows, and public pages
+- **Themeable UI** — shadcn/ui component system with light/dark theming
+
+## Tech stack
+
+- **Framework:** Next.js 16 (App Router) · React · TypeScript
+- **UI:** shadcn/ui (Radix/Base UI primitives) · Tailwind CSS 4 · Lucide icons
+- **Interaction:** dnd-kit (drag and drop) · date-fns (dates)
+- **State & forms:** React context, class-variance-authority, clsx / tailwind-merge
+
+## Getting started
 
 ```bash
+# 1. Install
+npm install
+
+# 2. Configure environment — create .env.local with the API base URL:
+#    NEXT_PUBLIC_API_URL=http://localhost:5000
+
+# 3. Run (start kognit-backend first)
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Production
+npm run build && npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+  app/
+    (app)/      # authenticated workspace — boards, spaces, tasks
+    (auth)/     # sign-in / registration flows
+    (public)/   # public-facing pages
+    context/    # app-wide providers
+  components/   # shared UI (shadcn/ui)
+  lib/          # utilities
+```
 
-## Learn More
+## License
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
